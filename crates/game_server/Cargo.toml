@@ -1,0 +1,30 @@
+[package]
+name = "game_server"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+horizon_event_system = { workspace = true }
+tokio-tungstenite = { workspace = true }
+# Use mio-runtime only for musl targets to avoid monoio compatibility issues
+[target.'cfg(target_env = "musl")'.dependencies]
+horizon_sockets = { workspace = true, default-features = false, features = ["mio-runtime"] }
+
+# Use default features (including monoio) for other targets
+[target.'cfg(not(target_env = "musl"))'.dependencies]
+horizon_sockets = { workspace = true }
+plugin_system = { workspace = true }
+futures-util = { workspace = true }
+horizon_bugs = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+once_cell = { workspace = true }
+num_cpus = { workspace = true }
+ue_types = { workspace = true }
+tracing = { workspace = true }
+futures = { workspace = true }
+sysinfo = { workspace = true }
+tokio = { workspace = true }
+serde = { workspace = true }
+libc = { workspace = true }
+bug = { workspace = true }
